@@ -20,3 +20,6 @@ class CustomQueue:
 
     def get_len(self):
         return self.r.llen(self.name)
+
+    def empty_queue(self):
+        self.r.delete(self.name)

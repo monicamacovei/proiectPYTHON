@@ -37,6 +37,7 @@ if __name__ == "__main__":
         exit(0)
     locatieDisk = sys.argv[1]
     q = CustomQueue(Redis())
+    q.empty_queue()
 
     country_links = get_country_links()
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
         country_text = country_text.replace(" ", "")
         top_links = get_top_links(country_link)
         for link in top_links:
-            locatieDiskTemp = os.path.join(locatieDisk, country_text, link)
+            locatieDiskTemp = os.path.join(locatieDisk, country_text)
             q.enqueue(link,locatieDiskTemp)
         break
 
