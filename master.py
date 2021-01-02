@@ -4,7 +4,7 @@ from redis import Redis
 from rqueue import CustomQueue
 import sys
 import os 
-
+from config import locatieDisk
 
 def get_country_links():
     response = requests.get("https://www.alexa.com/topsites/countries")  #iau HTML-ul de pe pagina
@@ -33,10 +33,10 @@ def get_top_links(country_link):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Trebuie dat ca argument locatieDisk")
+        print("Trebuie dat ca argument numele cozi din redis")
         exit(0)
-    locatieDisk = sys.argv[1]
-    q = CustomQueue(Redis())
+    redis_name = sys.argv[1]
+    q = CustomQueue(Redis(), redis_name)
     q.empty_queue()
 
     country_links = get_country_links()

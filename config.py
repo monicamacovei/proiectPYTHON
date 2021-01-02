@@ -1,0 +1,1 @@
+locatieDisk = "data/"
