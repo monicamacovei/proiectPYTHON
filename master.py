@@ -39,15 +39,12 @@ if __name__ == "__main__":
     q = CustomQueue(Redis())
 
     country_links = get_country_links()
-    print(len(country_links))
 
     for country_link, country_text in country_links:
         country_text = country_text.replace(" ", "")
         top_links = get_top_links(country_link)
         for link in top_links:
             locatieDiskTemp = os.path.join(locatieDisk, country_text, link)
-            print(locatieDiskTemp)
-            continue
             q.enqueue(link,locatieDiskTemp)
         break
 
