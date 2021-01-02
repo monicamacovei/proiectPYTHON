@@ -15,6 +15,18 @@ def get_country_links():
 
     return list(links)
 
+def get_top_links(country_link):
+    response = requests.get(country_link)
+    soup = BeautifulSoup(response.text) 
+
+    links = set()  
+    for link in soup.findAll('a'):  
+        link = link.get('href')
+        if "siteinfo/" in link:
+            links.add(link.replace("/siteinfo/", ""))
+
+    return list(links)
+
 if __name__ == "__main__":
     country_links = get_country_links()
     print(country_links)
