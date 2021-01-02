@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-
+from redis import Redis
+from rq import Queue
+from worker import get_html
 
 
 def get_country_links():
@@ -31,3 +33,6 @@ if __name__ == "__main__":
     country_links = get_country_links()
     top_links = get_top_links("https://www.alexa.com/topsites/countries/ES");
     print(top_links)
+    
+    q = Queue(connection=Redis())
+    result = q.enqueue(get_html, 'http://nvie.com')
