@@ -28,16 +28,11 @@ def get_top_links(country_link):
     return list(links)
 
 if __name__ == "__main__":
-    r = Redis()
-    q = CustomQueue(r)
-    q.enqueue("google.com","home")
+    q = CustomQueue(Redis())
 
-    exit(0)
     country_links = get_country_links()
-    
-    #q = Queue(connection=Redis())
 
     for country_link in country_links:
         top_links = get_top_links(country_link)
-
-    #result = q.enqueue(get_html, 'http://nvie.com')
+        for link in top_links:
+            q.enqueue(link,"home")
