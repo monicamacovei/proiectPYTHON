@@ -9,4 +9,9 @@ def get_html(link):
         file.write(r.text)
 
 q = CustomQueue(r=Redis())
-print(q.dequeue())
+
+i=0
+while q.get_len():
+    print(q.dequeue())
+    i+=1
+    print(i)

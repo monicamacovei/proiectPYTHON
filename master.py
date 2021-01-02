@@ -36,3 +36,4 @@ if __name__ == "__main__":
         top_links = get_top_links(country_link)
         for link in top_links:
             q.enqueue(link,"home")
+        break

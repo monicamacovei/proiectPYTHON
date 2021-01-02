@@ -17,3 +17,6 @@ class CustomQueue:
             return None
         data = data.decode()
         return json.loads(data)
+
+    def get_len(self):
+        return self.r.llen(self.name)
