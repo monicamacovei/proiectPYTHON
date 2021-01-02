@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from redis import Redis
 from rqueue import CustomQueue
 import sys
+import os 
+
 
 def get_country_links():
     response = requests.get("https://www.alexa.com/topsites/countries")  #iau HTML-ul de pe pagina
@@ -40,11 +42,12 @@ if __name__ == "__main__":
     print(len(country_links))
 
     for country_link, country_text in country_links:
-        print(country_link)
-        print(country_text)
+        country_text = country_text.replace(" ", "")
         top_links = get_top_links(country_link)
         for link in top_links:
+            locatieDiskTemp = os.path.join(locatieDisk, country_text, link)
+            print(locatieDiskTemp)
             continue
-            q.enqueue(link,"home")
+            q.enqueue(link,locatieDiskTemp)
         break
 
