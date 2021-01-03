@@ -27,10 +27,20 @@ def alexa_request(link, prefix, country_links):
     return links
 
 def get_country_links():
-    return alexa_request("https://www.alexa.com/topsites/countries", "countries/", True)
+    for _ in range(3):
+        try:
+            return alexa_request("https://www.alexa.com/topsites/countries", "countries/", True)
+        except Exception as ex:
+            print(ex)
+    return []
 
 def get_top_links(country_link):
-    return alexa_request(country_link, "siteinfo/", False)
+    for _ in range(3):
+        try:
+            return alexa_request(country_link, "siteinfo/", False)
+        except Exception as ex:
+            print(ex)
+    return []
 
 if __name__ == "__main__":
     if not len(sys.argv) >= 2: #primul argument e obligatoriu (numele cozii)
