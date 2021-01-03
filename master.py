@@ -6,6 +6,7 @@ import sys
 import os 
 from config import locatieDisk
 
+
 def get_country_links():
     response = requests.get("https://www.alexa.com/topsites/countries")  #iau HTML-ul de pe pagina
     soup = BeautifulSoup(response.text, features="html.parser") #initializam BeautifulSoup  (care ne ajuta sa parsam HTML-ul)
