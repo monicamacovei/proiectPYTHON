@@ -11,11 +11,14 @@ from rqueue import CustomQueue
 
 def alexa_request(link, prefix, country_links):
     """
-    Extrage date de pe site-ul https://www.alexa.com in functie de parametrii dati
+    Extrage date de pe site-ul https://www.alexa.com in functie de parametrii
     :param link: Link-ul de la tara curenta sau de la lista cu toate tarile
-    :param prefix: Prefixul din link, daca e de la tara curenta, e "siteinfo/", daca e de la lista cu tari, e "countries/"
-    :param country_links: Daca se apeleaza pentru lista cu tari, atunci va fi True. Altfel, va fi False
-    :return links: Link-urile extrase de pe alexa (lista cu link-ul tarilor sau lista cu link-ul site-urilor din top)
+    :param prefix: Prefixul din link, daca e de la tara curenta, e
+    "siteinfo/", daca e de la lista cu tari, e "countries/"
+    :param country_links: Daca se apeleaza pentru lista cu tari, atunci
+    va fi True. Altfel, va fi False
+    :return links: Link-urile extrase de pe alexa (lista cu link-ul
+    tarilor sau lista cu link-ul site-urilor din top)
     """
     response = requests.get(link)  # iau HTML-ul de pe pagina
     # initializam BeautifulSoup  (care ne ajuta sa parsam HTML-ul)
@@ -44,7 +47,8 @@ def alexa_request(link, prefix, country_links):
 def get_country_links():
     """
     Extrage link-urile tuturor tarilor de pe www.alexa.com
-    :return : link-urile extrase sau o lista goala daca apare eroare de 3 ori la rand
+    :return : link-urile extrase sau o lista goala daca apare
+    eroare de 3 ori la rand
     """
     for _ in range(3):
         try:
@@ -60,7 +64,8 @@ def get_top_links(country_link):
     """
     Extrage link-urile site-urilor din top pentru tara data ca parametru
     :param country_link: link-ul cu site-uri din top din tara curenta
-    :return : link-urile extrase sau o lista goala daca apare eroare de 3 ori la rand
+    :return : link-urile extrase sau o lista goala
+    daca apare eroare de 3 ori la rand
     """
     for _ in range(3):
         try:

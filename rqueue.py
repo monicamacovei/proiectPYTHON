@@ -29,7 +29,8 @@ class CustomQueue:
     def dequeue(self):
         """
         Ia ultimul element din coada si il transforma din JSON in dictionar
-        :return :ultimul element din coada. Daca nu exista, atunci returneaza None
+        :return :ultimul element din coada. Daca nu exista,
+        atunci returneaza None
         """
         # luam din coada self.name ultimul element
         # de la dreapta (adica primul adaugat)

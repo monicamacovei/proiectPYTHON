@@ -11,7 +11,8 @@ from rqueue import CustomQueue
 def get_html(data):
     """
     Extrage HTML-ul de pe pagina data si il salveaza in fisierul corespunzator
-    :param data: un dictionar cu link-ul de unde sa descarc HTML-ul si locatia unde trebuie salvat HTML-ul
+    :param data: un dictionar cu link-ul de unde sa
+    descarc HTML-ul si locatia unde trebuie salvat HTML-ul
     """
     r = requests.get("http://" + data["link"], timeout=10)
     # daca nu exista folderul pentru tara respectiva deja
@@ -56,7 +57,6 @@ if __name__ == "__main__":
 
     processes = []
     for _ in range(processes_number):
-        # initializez un proces ce apeleaza functia worker_process cu parametrul redis_name
         p = Process(target=worker_process, args=(redis_name,))
         processes.append(p)
         p.start()  # pornim procesul
