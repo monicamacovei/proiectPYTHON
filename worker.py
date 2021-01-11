@@ -9,7 +9,10 @@ from rqueue import CustomQueue
 
 
 def get_html(data):
-    # iau HTML-ul de pe pagina
+    """
+    Extrage HTML-ul de pe pagina data si il salveaza in fisierul corespunzator
+    :param data: un dictionar cu link-ul de unde sa descarc HTML-ul si locatia unde trebuie salvat HTML-ul
+    """
     r = requests.get("http://" + data["link"], timeout=10)
     # daca nu exista folderul pentru tara respectiva deja
     if not os.path.exists(data["locatieDisk"]):
@@ -21,7 +24,10 @@ def get_html(data):
 
 
 def worker_process(redis_name):
-    # initializam coada custom definita in rqueue.py
+    """
+    Iau elemente din coada Redis si descarc paginile corespunzatoare
+    :param redis_name: numele cozii Redis
+    """
     q = CustomQueue(Redis(), redis_name)
     while q.get_len():
 
